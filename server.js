@@ -10,8 +10,8 @@ const databaseConnection = require('./src/models/db');
 
 databaseConnection();
 
-// //Importação das rotas
-// const rotas = require('./src/routes/routes');
+//Importação das rotas
+const rotas = require('./src/routes/routes');
 
 //Configurações
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,7 +26,7 @@ router.get('/', function (req, res) {
 });
 
 app.use('/', router);
-// app.use(rotas);
+app.use(rotas);
 app.use(express.json());
 app.listen(process.env.port || 5500);
 
