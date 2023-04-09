@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const TarefaSchema = new mongoose.Schema({
+const TarefaExcluidaSchema = new mongoose.Schema({
 
     ds_tarefa: {
         type: String,
@@ -12,19 +12,9 @@ const TarefaSchema = new mongoose.Schema({
         required: true
     },
 
-    dt_conclusao: {
-        type: Date,
-        required: true
-    },
-
-    dt_notificação: {
-        type: Date,
-        required: true
-    },
-
     importante: {
         type: Number,
-        required: false
+        required: true
     },
 
     ds_anotacao: {
@@ -45,6 +35,6 @@ const TarefaSchema = new mongoose.Schema({
 },
     { timestamps: true })
 
-const Tarefa = mongoose.model("Tarefa", TarefaSchema);
+const TarefaExcluida = mongoose.model("TarefaExcluida", TarefaSTarefaExcluidaSchemachema);
 
-module.exports = Tarefa;
+module.exports = TarefaExcluida;

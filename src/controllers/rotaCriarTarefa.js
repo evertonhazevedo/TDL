@@ -8,6 +8,8 @@ const tabelaTarefas = require('../models/migrations/Tarefas');
 
             ds_tarefa: dados.tarefa,
             status: 0,
+            dt_conclusao: dados.conclusao,
+            dt_notificação: dados.notificacao, 
             importante: 0,
             ds_anotacao: dados.anotacao,
             cd_usuario: dados.usuario,

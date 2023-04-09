@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #504F4F;
+    color: #fff;
+    min-height: 100vh;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.headings {
+    text-align: center;
+    font-family: inherit;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.modal-body {
+    background-color: #504F4F;
+}
+
+.btnModal,
+.labelsModal {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.container {
+    text-align: center;
+    padding-top: 50px;
+    font-size: 20px;
+}
+
+#inputEmail,
+#inputSenha,
+#inputCadNome,
+#inputCadSobrenome,
+#inputCadEmail,
+#inputCadSenha {
+    background-color: transparent;
+    border: 0px;
+    border-bottom: solid 1px #929191;
+    border-radius: 0px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #fff;
+
+}
+
+#inputEmail::placeholder,
+#inputSenha::placeholder,
+#inputCadEmail::placeholder,
+#inputCadNome::placeholder,
+#inputCadSobrenome::placeholder,
+#inputCadSenha::placeholder {
+    color: #929191
+}
+
+#inputEmail:focus,
+#inputSenha:focus,
+#inputCadNome:focus,
+#inputCadSobrenome:focus,
+#inputCadEmail:focus,
+#inputCadSenha:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+.check-img {
+    padding-left: 8px;
+}
+
+.divImgLogin {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.divBtnsLogin>button {
+    background-color: #2196F3;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: inherit;
+    border: 0px;
+    border-radius: 3px;
+    height: 35px;
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.divBtnsLogin>button:hover,
+.btnModal:hover {
+    background-color: #2196F3;
+    opacity: 0.8;
+    transform: scale(1.02);
+}
+
+.modal-footer {
+    border: 0px;
+}
+
+.btnModal {
+    background-color: #2196F3;
+}
