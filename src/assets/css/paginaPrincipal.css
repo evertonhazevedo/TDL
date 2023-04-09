@@ -1,0 +1,437 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #504F4F;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-style: italic;
+    display: inline-block;
+    margin: 50px 0px 0px 10px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin-left: 350px;
+    margin-right: 6px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.flex-container {
+    display: flex;
+}
+
+#main-content {
+    flex-grow: 1;
+}
+
+#divGruposCriados,
+#main-content,
+#divArquivos {
+    flex-grow: 1;
+    width: 100%;
+    height: 100px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#divScrollSidebardireita {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+footer {
+    margin-bottom: 25px;
+
+}
+
+footer div,
+.tarefaGerada {
+    width: 665px;
+    height: 50px;
+    background-color: #929191;
+    border-radius: 5px;
+    display: flex;
+}
+
+footer div i {
+    position: relative;
+    font-size: 28px;
+    transition: 0.2s;
+}
+
+.divsInformacoesTarefas {
+    width: 95%;
+    max-width: 275px;
+    min-height: 90px;
+    height: auto;
+    margin: 0px 0px 10px 0px;
+    padding: 0px 0px 0px 0px;
+    background-color: #929191;
+    color: #fff;
+    border: 0px;
+    border-radius: 5px;
+}
+
+#textAreaTarefaAnotacao {
+    padding: 15px;
+}
+
+#headerSidebarDireita {
+
+    width: 100%;
+    max-width: 275px;
+    height: 55px;
+    background-color: #929191;
+    color: #fff;
+    border: 0px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+#divH4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 180px;
+    word-wrap: break-word;
+    align-items: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 0px 15px 15px 15px;
+    cursor: pointer;
+}
+
+.divsInformacoesTarefas:hover {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+#textAreaTarefaAnotacao {
+    flex-grow: 1;
+}
+
+#dataAtual {
+    font-style: italic;
+    padding-left: 35px;
+}
+
+.main-headers,
+.gruposCriadosHeaders {
+    display: none;
+}
+
+.sidebar {
+    background-color: #373636;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px;
+    height: 100%;
+    padding: 40px 10px 5px 10px;
+    transition: all 0.35s;
+}
+
+.sidebar-direita {
+    background-color: #373636;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px;
+    height: 100%;
+    padding: 10px 10px 5px 10px;
+    transition: all 0.35s;
+}
+
+#divSidebarDireita {
+    display: none;
+    transition: all 0.35s;
+    margin: 10px;
+}
+
+.btnExcluirTarefaSidebarDireita {
+    width: 30px;
+}
+
+#divDtCriacao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 100%;
+}
+
+#divDtCriacao>p {
+    margin: 12px;
+}
+
+.sidebar-header {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.dadosUsuario {
+    padding-left: 12px;
+    display: inline-block;
+}
+
+.tarefaGerada {
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+#adicionarTarefa {
+    padding-bottom: 10px;
+    width: 380px;
+    transition: all 0.4s;
+}
+
+#adicionarEtapa {
+    padding-bottom: 10px;
+    width: 250px;
+    transition: all 0.4s;
+}
+
+.btnsMain {
+    padding-bottom: 10px;
+    width: 45px;
+    transition: all 0.4s;
+    /* position: relative; 
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;*/
+}
+
+#adicionarTarefa:hover,
+#adicionarEtapa:hover,
+#adicionarArquivo:hover,
+#circuloNovaEtapa:hover,
+#divTarefaDados:hover {
+    transform: scale(1.05);
+}
+
+.btnsMain:hover,
+#btnExcluirTarefa>i:hover,
+.circulos:hover,
+.estrelas:hover {
+    transform: scale(1.2);
+}
+
+
+.circulos,
+.estrelas {
+    padding: 12px;
+}
+
+#inputNovaTarefa,
+#inputNovaEtapa {
+    height: 35px;
+    width: 70%;
+    margin-top: 7px;
+    margin-right: 20px;
+    margin-left: 10px;
+    display: block;
+    background: none;
+    border: 0;
+    color: #fff;
+}
+
+.buttonEtapa {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    align-content: center;
+    padding-left: 30px
+}
+
+.buttonEtapa input {
+    width: 100%;
+}
+
+.buttonEtapa>i {
+    margin-top: 12px;
+    margin-bottom: 8px;
+    width: fit-content;
+}
+
+#inputNovaTarefa:focus,
+#inputNovaEtapa:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+#descricaoTarefa {
+    height: 100%;
+    width: 88%;
+    margin: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#divTarefaDados {
+    display: flex;
+    flex-direction: column;
+}
+
+#divTarefaDados>span,
+#divTarefaDados>span>p {
+    width: 100vh;
+}
+
+#divTarefaDados>button{
+    width: fit-content;
+}
+
+
+#divTarefaDados>span>p {
+    flex-grow: 1;
+}
+
+#divTarefaDados #estrelaTarefas,
+#estrelaTarefasImportantes {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar button,
+button {
+    height: 60px;
+    width: 100%;
+    background: none;
+    border: 0;
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+
+}
+
+.sidebar button>span,
+button>span {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 48px;
+    /* width: 100vh; */
+    padding: 0 55px 0 12px;
+    border-radius: 24px;
+    line-height: 1;
+    transition: all 0.4s;
+}
+
+.sidebar button:hover {
+    background-color: rgb(255, 255, 255, 0.08);
+    transform: scale(1.05);
+}
+
+.divsInformacoesTarefas:hover {
+    background-color: #929191;
+    opacity: 0.8;
+}
+
+.sidebar button i {
+    position: relative;
+    font-size: 28px;
+    transition: 0.2s;
+}
+
+.sidebar button span {
+    font-size: 16px;
+}
+
+.sidebar>nav {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.usuario-img {
+    width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.4s;
+    margin-left: 12px;
+}
+
+.usuario-img:hover {
+    transform: scale(1.2);
+}
+
+@media (width < 920px) {
+
+    .sidebar {
+        width: 70px;
+    }
+
+    .sidebar button>span {
+        width: 50px;
+    }
+
+    .sidebar button>span>span {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .usuario-img {
+        width: 35px;
+        min-height: 35px;
+    }
+
+    .dadosUsuario {
+        display: none;
+    }
+
+    main {
+        margin-left: 120px;
+        margin-right: 6px;
+        width: 100%;
+        overflow: hidden;
+        transition: margin 0.4s;
+    }
+}
+
+@media (width > 1400px) {
+
+    footer div,
+    .tarefaGerada {
+        width: 1220px;
+    }
+
+    #descricaoTarefa {
+        width: 93%;
+    }
+
+    .divsInformacoesTarefas,
+    #divTarefaDados {
+
+        min-height: 185px;
+
+    }
+}
