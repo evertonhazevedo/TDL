@@ -55,13 +55,14 @@ footer {
 
 }
 
-footer div,
-.tarefaGerada {
-    width: 665px;
+#divAdicionarTarefa,
+#tarefaGerada {
+    width: 970px;
     height: 50px;
     background-color: #929191;
     border-radius: 5px;
     display: flex;
+    transition: all 0.4s;
 }
 
 footer div i {
@@ -109,9 +110,13 @@ footer div i {
     align-items: center;
 }
 
-input[type="file"] {
+input[type="file"]{
     display: none;
 }
+
+/* #datepicker{
+    display: none;
+} */
 
 .custom-file-upload {
     display: inline-block;
@@ -131,6 +136,22 @@ input[type="file"] {
 #dataAtual {
     font-style: italic;
     padding-left: 35px;
+}
+
+#btnCalendario,
+#btnLoop,
+#btnAlarme {
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 0px;
+    transition: all 0.4s;
+}
+
+#btnCalendario:hover,
+#btnLoop:hover,
+#btnAlarme:hover {
+    transform: scale(1.2);
 }
 
 .main-headers,
@@ -162,12 +183,9 @@ input[type="file"] {
     width: 300px;
     height: 100%;
     padding: 10px 10px 5px 10px;
-    transition: all 0.35s;
 }
 
 #divSidebarDireita {
-    display: none;
-    transition: all 0.35s;
     margin: 10px;
 }
 
@@ -196,15 +214,19 @@ input[type="file"] {
     display: inline-block;
 }
 
-.tarefaGerada {
+#tarefaGerada {
     margin-bottom: 10px;
     margin-top: 20px;
 }
 
 #adicionarTarefa {
     padding-bottom: 10px;
-    width: 380px;
+    width: 329px;
     transition: all 0.4s;
+}
+
+#adicionarTarefa > span{
+    padding-right: 20px;
 }
 
 #adicionarEtapa {
@@ -223,11 +245,17 @@ input[type="file"] {
     flex-direction: column;*/
 }
 
+.btnsTarefaDados>span>p {
+    min-width: 170px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.btnsTarefaDados:hover,
 #adicionarTarefa:hover,
 #adicionarEtapa:hover,
 #adicionarArquivo:hover,
-#circuloNovaEtapa:hover,
-#divTarefaDados:hover {
+#circuloNovaEtapa:hover {
     transform: scale(1.05);
 }
 
@@ -249,7 +277,7 @@ input[type="file"] {
     height: 35px;
     width: 70%;
     margin-top: 7px;
-    margin-right: 20px;
+    margin-right: 250px;
     margin-left: 10px;
     display: block;
     background: none;
@@ -257,20 +285,20 @@ input[type="file"] {
     color: #fff;
 }
 
-.buttonEtapa {
+#btnEtapa {
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: row;
     align-self: flex-end;
     align-content: center;
     padding-left: 30px
 }
 
-.buttonEtapa input {
+#btnEtapa input {
     width: 100%;
 }
 
-.buttonEtapa>i {
+#btnEtapa>i {
     margin-top: 12px;
     margin-bottom: 8px;
     width: fit-content;
@@ -292,6 +320,12 @@ input[type="file"] {
     align-items: center;
 }
 
+#btnLembrete>span {
+    width: 100%;
+    padding-right: 0px;
+    align-items: center;
+}
+
 #divTarefaDados {
     display: flex;
     flex-direction: column;
@@ -302,7 +336,7 @@ input[type="file"] {
     width: 100vh;
 }
 
-#divTarefaDados>button{
+#divTarefaDados>button {
     width: fit-content;
 }
 
@@ -415,13 +449,18 @@ button>span {
         overflow: hidden;
         transition: margin 0.4s;
     }
+
+    #divAdicionarTarefa,
+    #tarefaGerada {
+        width: 665px;
+    }
 }
 
 @media (width > 1400px) {
 
-    footer div,
-    .tarefaGerada {
-        width: 1220px;
+    #divAdicionarTarefa,
+    #tarefaGerada {
+        width: 1520px;
     }
 
     #descricaoTarefa {
@@ -433,5 +472,9 @@ button>span {
 
         min-height: 185px;
 
+    }
+
+    #adicionarTarefa{
+        width: 213px;
     }
 }

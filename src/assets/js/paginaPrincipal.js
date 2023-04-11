@@ -5,6 +5,8 @@ const data = new Date();
 let mes = 0;
 let diaSemana = 0;
 
+let tamanhoTela = window.matchMedia("(width > 1400px)")
+
 /*Descobrindo dia da semana*/
 switch (data.getDay()) {
 
@@ -133,10 +135,31 @@ function mostrarConteudoGrupo(grupo) {
     document.getElementById('footerNovaTarefa').style.display = 'block';
 }
 
+document.getElementById('btnCalendario')
+.addEventListener('click', function(){
+    let dataConclusao = document.getElementById('inputBtnCalendario')
+    console.log(dataConclusao.value);
+})
+
 /*Função para mostrar apenas icone de mais e adicionarTarefa*/
 function abrirSidebarDireita() {
 
+    
     document.getElementById('divSidebarDireita').style.display = 'block';
+
+    if (tamanhoTela.matches != true) {
+
+        document.getElementById('tarefaGerada').style.width = '665px'
+        document.getElementById('divAdicionarTarefa').style.width = '665px'
+
+    } else {
+
+        document.getElementById('tarefaGerada').style.width = '1220px'
+        document.getElementById('divAdicionarTarefa').style.width = '1220px'
+
+    }
+
+
     //         document.getElementById('inputNovaTarefa').setAttribute('disabled', '');
     //         document.getElementById('inputNovaTarefa').value = '';
     //         document.getElementById('circuloNovaTarefa').style.display = 'none';
@@ -289,12 +312,20 @@ document.getElementById('inputNovaTarefa')
 document.getElementById('adicionarEtapa')
     .addEventListener('click', function () {
 
-        document.getElementById('circuloNovaEtapa').style.display = 'block';
+        document.getElementById('btnEtapa').style.display = 'flex';
         document.getElementById('inputNovaEtapa').style.display = 'block';
         document.getElementById('inputNovaEtapa').removeAttribute('disabled');
         document.getElementById('adicionarEtapa').style.display = 'none';
 
     });
+
+function testeCliqueClose() {
+    alert('Cliquei no X');
+}
+
+function testeClique() {
+    alert('Não cliquei no X');
+}
 
 
 /*Função para mostrar */
@@ -304,7 +335,7 @@ document.getElementById('inputNovaEtapa')
         if (e.key === 'Enter') {
             document.getElementById('inputNovaEtapa').setAttribute('disabled', '');
             document.getElementById('inputNovaEtapa').value = '';
-            document.getElementById('circuloNovaEtapa').style.display = 'none';
+            document.getElementById('btnEtapa').style.display = 'none';
             document.getElementById('adicionarEtapa').style.display = 'block';
         }
 
@@ -316,4 +347,20 @@ document.getElementById('btnCloseSideBarDireita')
 
         document.getElementById('textAreaTarefaAnotacao').value = '';
         document.getElementById('divSidebarDireita').style.display = 'none';
+
+        if (tamanhoTela.matches != true) {
+
+            document.getElementById('tarefaGerada').style.width = '970px'
+            document.getElementById('inputNovaTarefa').style.width = '70%'
+            document.getElementById('divAdicionarTarefa').style.width = '970px'
+
+        } else {
+
+            document.getElementById('tarefaGerada').style.width = '1520px'
+            document.getElementById('inputNovaTarefa').style.width = '70%'
+            document.getElementById('divAdicionarTarefa').style.width = '1520px'
+
+        }
+
+
     });

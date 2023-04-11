@@ -10,6 +10,9 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/src/assets/css/paginaPrincipal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
 </head>
 
 <body id="corpoPaginaPrincipal">
@@ -107,7 +110,7 @@
                 <!--Conteúdo Principal-->
                 <div id="main-content">
 
-                    <div class="tarefaGerada" onclick="abrirSidebarDireita()">
+                    <div id="tarefaGerada" onclick="abrirSidebarDireita()">
 
                         <button style="width: fit-content; height: 100%;" name="btnCirculoTarefa1"
                             class="btnCirculoTarefa1" onclick="concluirTarefa(this.name)">
@@ -144,7 +147,7 @@
                 </div>
                 <!--footer para adicionar tarefas-->
                 <footer id="footerNovaTarefa">
-                    <div>
+                    <div id="divAdicionarTarefa">
                         <button id="adicionarTarefa">
                             <span>
                                 <i class="material-symbols-rounded" style="color: #fff;">add</i>
@@ -156,30 +159,49 @@
                             style="color: #fff; display: none;">circle</i>
                         <input id="inputNovaTarefa" type="text" disabled>
 
-                        <button id="btnCalendario" class="btnsMain">
-                            <span>
-                                <i class="material-symbols-rounded" style="color: #fff;">calendar_month</i>
+                        <label id="btnCalendario">
+                            <span id="inputBtnCalendario" class="input-icons">
+                                <input type="date" style="display:none" class="flatpickr-input">
+                                <i class="material-symbols-rounded" style="color: #fff">calendar_month</i>
+                                </input>
                             </span>
-                        </button>
+                        </label>
 
-                        <button id="btnAlarme" class="btnsMain">
+                        <label id="btnAlarme">
+                            <span class="input-icons">
+                                <input id="inputBtnAlarme" type="date-time" style="display:none">
+                                <i class="material-symbols-rounded" style="color: #fff">alarm</i>
+                                </input>
+                            </span>
+                        </label>
+
+                        <label id="btnLoop">
                             <span>
+                                <input type="text" style="display:none">
+                                <i class="material-symbols-rounded" style="color: #fff">laps</i>
+                                </input>
+                            </span>
+                        </label>
+                        <!-- 
+                        <button id="btnAlarme" class="btnsMain">
+                            <span class="input-icons">
+                                <input type="date-time" class="input-field" style="border: 1px solid red;">
                                 <i class="material-symbols-rounded" style="color: #fff;">alarm</i>
                             </span>
-                        </button>
-
+                        </button> -->
+                        <!-- 
                         <button id="btnLoop" class="btnsMain">
                             <span>
                                 <i class="material-symbols-rounded" style="color: #fff;">laps</i>
                             </span>
-                        </button>
+                        </button> -->
                     </div>
                 </footer>
             </main>
         </div>
 
         <!--Siderbar direita-->
-        <div id="divSidebarDireita">
+        <div id="divSidebarDireita" style="display: none">
 
             <aside class="sidebar-direita" id="sidebar-direita">
 
@@ -236,9 +258,9 @@
                                 </span>
                             </button>
 
-                            <button class="buttonEtapa">
+                            <button id="btnEtapa">
                                 <i class="material-symbols-rounded" id="circuloNovaEtapa"
-                                    style="color: #fff; display: none;">fiber_manual_record</i>
+                                    style="color: #fff;">fiber_manual_record</i>
                                 <input id="inputNovaEtapa" type="text" disabled>
                             </button>
 
@@ -248,10 +270,10 @@
                     <div class="divsInformacoesTarefas" id="divTarefaDados">
 
                         <div>
-                            <button id="btnCalendario" class="btnsTarefaDados">
+                            <button id="btnLembrete" class="btnsTarefaDados">
                                 <span>
                                     <i class="material-symbols-rounded" style="color: #fff;">calendar_month</i>
-                                    <p>Lembre-me às 09:00 Hoje</p>
+                                    <p> Lembre-me às 09:00 Hoje</p>
                                     <i class="material-symbols-rounded" style="color: #fff;">close</i>
                                 </span>
                             </button>
@@ -262,9 +284,11 @@
                         <div>
                             <button id="btnAlarme" class="btnsTarefaDados">
                                 <span>
-                                    <i class="material-symbols-rounded" style="color: #fff;">alarm</i>
-                                    <p>Para 01/04/2023</p>
-                                    <i class="material-symbols-rounded" style="color: #fff;">close</i>
+                                    <i class="material-symbols-rounded" style="color: #fff;"
+                                        onclick="testeClique()">alarm</i>
+                                    <p onclick="testeClique()">Para 01/04/2023</p>
+                                    <i class="material-symbols-rounded" id="testeClique" style="color: #fff;"
+                                        onclick="testeCliqueClose()">close</i>
                                 </span>
                             </button>
 
@@ -328,5 +352,16 @@
 </body>
 
 <script src="/src/assets/js/paginaPrincipal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    config = {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i"
+    }
+
+    flatpickr("input[type=date]", {});
+    flatpickr("input[type=date-time]", config);
+
+</script>
 
 </html>
