@@ -1,26 +1,55 @@
 document.getElementById('btnEntrar')
-    .addEventListener('click', async function () {
+    .addEventListener('click', function () {
 
         //Pegando valores dos campos email e senha do formulário
         let email = document.getElementById('inputEmail').value;
         let senha = document.getElementById('inputSenha').value;
 
-        await Swal.fire({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            icon: 'success',
-            title: 'Logado com sucesso'
+        const options = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        };
 
-        })
+        if (email == "" || senha == "") {
 
-        document.getElementById('inputEmail').value = '';
-        document.getElementById('inputSenha').value = '';
+            Swal.fire('Por favor preencha todos os campos!', '', 'error');
 
-        window.location.href = "/src/views/paginaPrincipal.html";
+        } else {
 
+            fetch('http://localhost:5500/validar-login/' + email + '/' + senha)
+                .then(response => response.json())
+                .then(async response => {
+
+                    if (response.success == false) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Usuário ou senha incorreta!'
+                        });
+                    } else {
+
+                        await Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Logado com sucesso'
+                        })
+
+                        //Salvando token no localStorage
+                        localStorage.setItem("token", response.token);
+                        localStorage.setItem("nome_usuario", response.nome);
+                        localStorage.setItem("sobrenome_usuario", response.sobrenome);
+                        localStorage.setItem("email_usuario", response.email);
+                        localStorage.setItem("id_usuario", response.id_usuario);
+
+                        window.location.href = "/src/views/paginaPrincipal.html";
+                    }
+                })
+                .catch(err => console.error(err));
+        }
     });
 
 document.getElementById('inputCadSenha')

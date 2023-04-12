@@ -1,3 +1,11 @@
+let token = localStorage.getItem('token');
+
+
+if (token == null) {
+    window.location.href = "/index.html";
+}
+
+
 /*Instanciando objeto da classe Date*/
 const data = new Date();
 
@@ -5,7 +13,14 @@ const data = new Date();
 let mes = 0;
 let diaSemana = 0;
 
-let tamanhoTela = window.matchMedia("(width > 1400px)")
+let tamanhoTela = window.matchMedia("(width > 1400px)");
+
+let [nome] = localStorage.getItem('nome_usuario').split(' ');
+let sobrenome = localStorage.getItem('sobrenome_usuario');
+let email = localStorage.getItem('email_usuario');
+
+document.getElementById('dadosUsuario').innerHTML = `<p>` + nome + ' ' + sobrenome + `</p>
+                                                     <p>` + email + `</p>`
 
 /*Descobrindo dia da semana*/
 switch (data.getDay()) {
@@ -126,8 +141,14 @@ function escondeGrupos() {
 /*Função para mostrar apenas informações da aba Grupo*/
 function mostrarConteudoGrupo(grupo) {
 
-    escondeGrupos();
-    document.getElementById(grupo).style.display = 'block';
+    const cabecalhoMain = document.getElementById('divMainHeadersGrupo');
+
+    cabecalhoMain.innerHTML = `<div id="` + grupo + `" class="gruposCriadosHeaders" style="display: block;">
+                                    <i class="material-symbols-rounded" style="color: #B6DF82";>bookmark</i>
+                                    <h1>` + grupo + `</h1>
+                                </div>`
+    // escondeGrupos();
+    document.getElementById('divMainHeadersGrupo').style.display = 'block';
     document.getElementById('meuDia').style.display = 'none';
     document.getElementById('tarefas').style.display = 'none';
     document.getElementById('lixeira').style.display = 'none';
@@ -135,37 +156,41 @@ function mostrarConteudoGrupo(grupo) {
     document.getElementById('footerNovaTarefa').style.display = 'block';
 }
 
-document.getElementById('btnCalendario')
-.addEventListener('click', function(){
-    let dataConclusao = document.getElementById('inputBtnCalendario')
-    console.log(dataConclusao.value);
-})
-
 /*Função para mostrar apenas icone de mais e adicionarTarefa*/
 function abrirSidebarDireita() {
 
-    
+    let tarefasGeradas = document.getElementsByClassName('tarefaGerada');
     document.getElementById('divSidebarDireita').style.display = 'block';
+
+    // let divScrollSidebardireita = document.getElementById('divScrollSidebardireita');
+
+    // divScrollSidebardireita.innerHTML += ``
+
 
     if (tamanhoTela.matches != true) {
 
-        document.getElementById('tarefaGerada').style.width = '665px'
+        for (let i = 0; i < tarefasGeradas.length; i++) {
+            tarefasGeradas[i].style.width = '665px'
+        }
+
         document.getElementById('divAdicionarTarefa').style.width = '665px'
 
     } else {
 
-        document.getElementById('tarefaGerada').style.width = '1220px'
+        for (let i = 0; i < tarefasGeradas.length; i++) {
+            tarefasGeradas[i].style.width = '1220px'
+        }
+
         document.getElementById('divAdicionarTarefa').style.width = '1220px'
 
     }
-
-
-    //         document.getElementById('inputNovaTarefa').setAttribute('disabled', '');
-    //         document.getElementById('inputNovaTarefa').value = '';
-    //         document.getElementById('circuloNovaTarefa').style.display = 'none';
-    //         document.getElementById('adicionarTarefa').style.display = 'block';
-
 };
+
+function mostraBotoesInputTarefa() {
+
+    document.getElementById('btnAtualizaTarefa').style.display = 'flex';
+    document.getElementById('btnCancelarAtualizacaoTarefa').style.display = 'flex';
+}
 
 function concluirTarefa(tarefa) {
 
@@ -173,7 +198,7 @@ function concluirTarefa(tarefa) {
 
     if (tarefa.substring(tarefa.length - 9) != 'Concluida') {
 
-        let tarefaConcluida = document.getElementsByClassName(tarefa + 'Concluida');
+        let tarefaConcluida = document.getElementsByClassName(tarefa + '-Concluida');
 
         for (let i = 0; i < tarefas.length; i++) {
             tarefas[i].style.display = 'none';
@@ -185,14 +210,22 @@ function concluirTarefa(tarefa) {
 
     } else {
 
-        let tarefaNaoConcluida = document.getElementsByClassName(tarefa.substring(0, 17));
+        let [tarefaNaoConcluida] = tarefa.split('-');
+        let tarefaNaoConcluidaFormatada = '';
+
+        for (let i = 0; i < tarefaNaoConcluida.length; i++) {
+
+            tarefaNaoConcluidaFormatada += tarefaNaoConcluida[i];
+        }
+
+        let tarefasNaoConluidas = document.getElementsByClassName(tarefaNaoConcluidaFormatada)
 
         for (let i = 0; i < tarefas.length; i++) {
             tarefas[i].style.display = 'none';
         }
 
-        for (let i = 0; i < tarefaNaoConcluida.length; i++) {
-            tarefaNaoConcluida[i].style.display = 'block';
+        for (let i = 0; i < tarefasNaoConluidas.length; i++) {
+            tarefasNaoConluidas[i].style.display = 'block';
         }
 
     }
@@ -205,7 +238,7 @@ function definirImportante(tarefa) {
 
     if (tarefa.substring(tarefa.length - 10) != 'Importante') {
 
-        let tarefaImportante = document.getElementsByClassName(tarefa + 'Importante');
+        let tarefaImportante = document.getElementsByClassName(tarefa + '-Importante');
 
         for (let i = 0; i < tarefas.length; i++) {
             tarefas[i].style.display = 'none';
@@ -217,14 +250,22 @@ function definirImportante(tarefa) {
 
     } else {
 
-        let tarefaNaoImportante = document.getElementsByClassName(tarefa.substring(0, 17));
+        let [tarefaNaoImportante] = tarefa.split('-');
+        let tarefaNaoImportanteFormatada = '';
+
+        for (let i = 0; i < tarefaNaoImportante.length; i++) {
+
+            tarefaNaoImportanteFormatada += tarefaNaoImportante[i];
+        }
+
+        let tarefasNaoImportantes = document.getElementsByClassName(tarefaNaoImportanteFormatada)
 
         for (let i = 0; i < tarefas.length; i++) {
             tarefas[i].style.display = 'none';
         }
 
-        for (let i = 0; i < tarefaNaoImportante.length; i++) {
-            tarefaNaoImportante[i].style.display = 'block';
+        for (let i = 0; i < tarefasNaoImportantes.length; i++) {
+            tarefasNaoImportantes[i].style.display = 'block';
         }
 
     }
@@ -289,22 +330,11 @@ document.getElementById('adicionarTarefa')
     .addEventListener('click', function () {
 
         document.getElementById('circuloNovaTarefa').style.display = 'block';
+        document.getElementById('btnCancelarCriacaoTarefa').style.display = 'flex';
+        document.getElementById('btnCriarTarefa').style.display = 'flex';
         document.getElementById('inputNovaTarefa').style.display = 'block';
         document.getElementById('inputNovaTarefa').removeAttribute('disabled');
         document.getElementById('adicionarTarefa').style.display = 'none';
-
-    });
-
-/*Função para mostrar apenas icone de mais e adicionarTarefa*/
-document.getElementById('inputNovaTarefa')
-    .addEventListener('keypress', function (e) {
-
-        if (e.key === 'Enter') {
-            document.getElementById('inputNovaTarefa').setAttribute('disabled', '');
-            document.getElementById('inputNovaTarefa').value = '';
-            document.getElementById('circuloNovaTarefa').style.display = 'none';
-            document.getElementById('adicionarTarefa').style.display = 'block';
-        }
 
     });
 
@@ -327,6 +357,29 @@ function testeClique() {
     alert('Não cliquei no X');
 }
 
+/*Função para abrir input de criação de novo grupo*/
+document.getElementById('novoGrupo')
+    .addEventListener('click', function () {
+
+
+        document.getElementById('divCriarGrupo').style.display = 'flex';
+        document.getElementById('btnCriarGrupo').style.display = 'block';
+        document.getElementById('inputNovoGrupo').style.display = 'block';
+        document.getElementById('divCriarGrupo').style.flexDirection = 'row';
+        document.getElementById('btnCancelarCriarGrupo').style.display = 'block';
+
+    });
+
+/*Função para cancelar criação de novo grupo */
+function cancelarCriacaoGrupo() {
+
+    document.getElementById('divCriarGrupo').style.display = 'none';
+    document.getElementById('btnCriarGrupo').style.display = 'none';
+    document.getElementById('inputNovoGrupo').style.display = 'none';
+    // document.getElementById('divCriarGrupo').style.flexDirection = 'row';
+    document.getElementById('btnCancelarCriarGrupo').style.display = 'none';
+
+};
 
 /*Função para mostrar */
 document.getElementById('inputNovaEtapa')
@@ -345,18 +398,26 @@ document.getElementById('inputNovaEtapa')
 document.getElementById('btnCloseSideBarDireita')
     .addEventListener('click', function () {
 
+        let tarefasGeradas = document.getElementsByClassName('tarefaGerada');
         document.getElementById('textAreaTarefaAnotacao').value = '';
         document.getElementById('divSidebarDireita').style.display = 'none';
 
         if (tamanhoTela.matches != true) {
 
-            document.getElementById('tarefaGerada').style.width = '970px'
+
+            for (let i = 0; i < tarefasGeradas.length; i++) {
+                tarefasGeradas[i].style.width = '970px'
+            }
+
             document.getElementById('inputNovaTarefa').style.width = '70%'
             document.getElementById('divAdicionarTarefa').style.width = '970px'
 
         } else {
 
-            document.getElementById('tarefaGerada').style.width = '1520px'
+            for (let i = 0; i < tarefasGeradas.length; i++) {
+                tarefasGeradas[i].style.width = '1520px'
+            }
+
             document.getElementById('inputNovaTarefa').style.width = '70%'
             document.getElementById('divAdicionarTarefa').style.width = '1520px'
 

@@ -4,7 +4,8 @@ const GrupoSchema = new mongoose.Schema({
 
     nm_grupo: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     cd_usuario: {

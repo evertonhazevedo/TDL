@@ -11,15 +11,16 @@ const tabelaTarefas = require('../models/migrations/Tarefas');
             dt_conclusao: dados.conclusao,
             dt_notificação: dados.notificacao, 
             importante: 0,
-            ds_anotacao: dados.anotacao,
+            ds_anotacao: '',
             cd_usuario: dados.usuario,
             cd_grupo: dados.grupo
 
-        }).then(function () {
+        }).then(function (tarefa) {
 
             return res.status(200).json({
                 success: true,
-                message: "Tarefa criada com sucesso!" 
+                message: "Tarefa criada com sucesso! Tarefa:",
+                tarefa: tarefa 
             });
 
         }).catch(function (error) {

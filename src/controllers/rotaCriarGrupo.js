@@ -9,11 +9,12 @@ const tabelaGrupos = require('../models/migrations/Grupos');
             nm_grupo: dados.grupo,
             cd_usuario: dados.usuario
 
-        }).then(function () {
+        }).then(function (grupo) {
 
             return res.status(200).json({
                 success: true,
-                message: "Grupo criado com sucesso!" 
+                message: "Grupo criado com sucesso! Grupo:",
+                grupo: grupo
             });
 
         }).catch(function (error) {

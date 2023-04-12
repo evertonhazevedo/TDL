@@ -23,9 +23,7 @@
             <div class="sidebar">
                 <header class="sidebar-header">
                     <img class="usuario-img" src="https://sujeitoprogramador.com/steve.png" alt="Foto do usuário" />
-                    <div class="dadosUsuario">
-                        <p>Steve Jobs</p>
-                        <p>stevejobs@gmail.com</p>
+                    <div id="dadosUsuario">
                     </div>
                 </header>
 
@@ -60,20 +58,26 @@
 
                     <hr style="width: 100%;">
 
-
                     <div id="divGruposCriados">
-                        <button class="grupos" name="Trabalho" onclick="mostrarConteudoGrupo(this.name)">
-                            <span>
-                                <i class="material-symbols-rounded" style="color: #B6DF82;">bookmark</i>
-                                <span>Trabalho</span>
-                            </span>
-                        </button>
+
+                        <div id='divCriarGrupo'>
+                            <input id="inputNovoGrupo" type='text' placeholder='Nome do grupo'>
+                            <button id="btnCriarGrupo" onclick="criarGrupo()">
+                                <i class="material-symbols-rounded" style="color: #B6DF82;">check</i>
+                            </button>
+                            <button id="btnCancelarCriarGrupo" onclick="cancelarCriacaoGrupo()">
+                                <i class="material-symbols-rounded" style="color: #FB5C5C;">close</i>
+                            </button>
+                        </div>
+
                     </div>
+
                     <button id="novoGrupo">
                         <span>
                             <i class="material-symbols-rounded" style="color: #fff;">add</i>
                             <span>Novo Grupo</span>
                         </span>
+                    </button>
                 </nav>
             </div>
         </div>
@@ -81,69 +85,37 @@
         <div>
             <!--Conteúdo da página-->
             <main>
-                <!--Cabeçalhos do conteúdo-->
-                <div id="meuDia">
-                    <i class="material-symbols-rounded" style="color: #FBB708;">light_mode</i>
-                    <h1>Meu Dia</h1>
-                    <p id="dataAtual"></p>
+                <div id="divMainheaders">
+                    <!--Cabeçalhos do conteúdo-->
+                    <div id="meuDia">
+                        <i class="material-symbols-rounded" style="color: #FBB708;">light_mode</i>
+                        <h1>Meu Dia</h1>
+                        <p id="dataAtual"></p>
+                    </div>
+
+                    <div id="importante" class="main-headers">
+                        <i class="material-symbols-rounded" style="color: #E19EEC;">star</i>
+                        <h1>Importante</h1>
+                    </div>
+
+                    <div id="tarefas" class="main-headers">
+                        <i class="material-symbols-rounded" style="color: #82B7E9;">home</i>
+                        <h1>Tarefas</h1>
+                    </div>
+
+                    <div id="lixeira" class="main-headers">
+                        <i class="material-symbols-rounded" style="color: #FB5C5C;">delete</i>
+                        <h1>Lixeira</h1>
+                    </div>
+                    <div id="divMainHeadersGrupo" class="main-headers">
+
+                    </div>
                 </div>
 
-                <div id="importante" class="main-headers">
-                    <i class="material-symbols-rounded" style="color: #E19EEC;">star</i>
-                    <h1>Importante</h1>
-                </div>
 
-                <div id="tarefas" class="main-headers">
-                    <i class="material-symbols-rounded" style="color: #82B7E9;">home</i>
-                    <h1>Tarefas</h1>
-                </div>
-
-                <div id="lixeira" class="main-headers">
-                    <i class="material-symbols-rounded" style="color: #FB5C5C;">delete</i>
-                    <h1>Lixeira</h1>
-                </div>
-
-                <div id="Trabalho" class="gruposCriadosHeaders">
-                    <i class="material-symbols-rounded" style="color: #B6DF82;">bookmark</i>
-                    <h1>Trabalho</h1>
-                </div>
                 <!--Conteúdo Principal-->
                 <div id="main-content">
 
-                    <div id="tarefaGerada" onclick="abrirSidebarDireita()">
-
-                        <button style="width: fit-content; height: 100%;" name="btnCirculoTarefa1"
-                            class="btnCirculoTarefa1" onclick="concluirTarefa(this.name)">
-
-                            <i class="material-symbols-rounded circulos" id="circuloTarefas"
-                                style="color: #fff;">circle</i>
-
-                        </button>
-
-                        <button style="width: fit-content; height: 100%; display:none"
-                            class="btnCirculoTarefa1Concluida" name="btnCirculoTarefa1Concluida"
-                            onclick="concluirTarefa(this.name)">
-
-                            <i class="material-icons circulos" id="circuloTarefasConcluidas"
-                                style="color: #fff; ">check_circle</i>
-
-                        </button>
-
-                        <p id="descricaoTarefa">Esta é uma tarefa exemplo</p>
-
-                        <button style="width: fit-content; height: 100%;" onclick="definirImportante(this.name)"
-                            class="btnEstrelaTarefa1" name="btnEstrelaTarefa1">
-                            <i class="material-symbols-rounded estrelas" id="estrelaTarefas"
-                                style="color: #E19EEC;">star</i>
-                        </button>
-
-                        <button style="width: fit-content; height: 100%; display:none"
-                            class="btnEstrelaTarefa1Importante" name="btnEstrelaTarefa1Importante"
-                            onclick="definirImportante(this.name)">
-                            <i class="material-icons estrelas" id="estrelaTarefasImportantes"
-                                style="color: #E19EEC;">star</i>
-                        </button>
-                    </div>
                 </div>
                 <!--footer para adicionar tarefas-->
                 <footer id="footerNovaTarefa">
@@ -159,9 +131,21 @@
                             style="color: #fff; display: none;">circle</i>
                         <input id="inputNovaTarefa" type="text" disabled>
 
+                        <label id="btnCriarTarefa" onclick="criarTarefa()" style="display:none">
+                            <span>
+                                <i class="material-symbols-rounded" style="color: #B6DF82;">check</i>
+                            </span>
+                        </label>
+
+                        <label id="btnCancelarCriacaoTarefa" onclick="cancelarCriacaoTarefa()" style="display:none">
+                            <span>
+                                <i class="material-symbols-rounded" style="color: #FB5C5C;">close</i>
+                            </span>
+                        </label>
+
                         <label id="btnCalendario">
-                            <span id="inputBtnCalendario" class="input-icons">
-                                <input type="date" style="display:none" class="flatpickr-input">
+                            <span class="input-icons">
+                                <input type="date" style="display:none" class="flatpickr-input" id="inputBtnCalendario">
                                 <i class="material-symbols-rounded" style="color: #fff">calendar_month</i>
                                 </input>
                             </span>
@@ -169,7 +153,7 @@
 
                         <label id="btnAlarme">
                             <span class="input-icons">
-                                <input id="inputBtnAlarme" type="date-time" style="display:none">
+                                <input id="inputBtnAlarme" type="datetime" style="display:none">
                                 <i class="material-symbols-rounded" style="color: #fff">alarm</i>
                                 </input>
                             </span>
@@ -182,6 +166,7 @@
                                 </input>
                             </span>
                         </label>
+
                         <!-- 
                         <button id="btnAlarme" class="btnsMain">
                             <span class="input-icons">
@@ -346,21 +331,26 @@
             </aside>
         </div>
     </div>
-
-
-
 </body>
 
 <script src="/src/assets/js/paginaPrincipal.js"></script>
+<script src="/src/assets/js/criarGrupo.js"></script>
+<script src="/src/assets/js/criarTarefa.js"></script>
+<script src="/src/assets/js/atualizarTarefa.js"></script>
+<script src="/src/assets/js/deletarTarefa.js"></script>
+<script src="/src/assets/js/listarInformações.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
-    config = {
+
+    configDateTime = {
         enableTime: true,
         dateFormat: "Y-m-d H:i"
     }
 
     flatpickr("input[type=date]", {});
-    flatpickr("input[type=date-time]", config);
+    flatpickr("input[type=datetime]", configDateTime);
 
 </script>
 

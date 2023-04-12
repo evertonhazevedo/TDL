@@ -17,8 +17,10 @@
     },
     "homepage": "https://github.com/evertonhazevedo/TDL#readme",
     "dependencies": {
+        "bcrypt": "^5.1.0",
         "bootstrap": "^5.2.3",
         "express": "^4.18.2",
+        "jsonwebtoken": "^9.0.0",
         "mongoose": "^7.0.3"
     },
     "devDependencies": {

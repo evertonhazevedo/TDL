@@ -56,13 +56,38 @@ footer {
 }
 
 #divAdicionarTarefa,
-#tarefaGerada {
+.tarefaGerada {
     width: 970px;
     height: 50px;
     background-color: #929191;
     border-radius: 5px;
     display: flex;
     transition: all 0.4s;
+}
+
+#inputNovoGrupo {
+    width: 90%;
+    display: none;
+    margin: 10px 0px 0px 10px;
+    border: none;
+    border-bottom: 1px solid #929191;
+    background: transparent;
+    color: #fff;
+}
+
+#btnCriarGrupo, #btnCancelarCriarGrupo{
+    border-bottom: 1px solid #929191;
+    width: fit-content;
+    transform: scale(1);
+}
+
+#btnCriarGrupo, #divCriarGrupo, #btnCancelarCriarGrupo{
+    display: none;
+}
+
+#inputNovoGrupop:focus{
+    box-shadow: 0 0 0 0;
+    outline: 0;
 }
 
 footer div i {
@@ -110,7 +135,7 @@ footer div i {
     align-items: center;
 }
 
-input[type="file"]{
+input[type="file"] {
     display: none;
 }
 
@@ -140,7 +165,9 @@ input[type="file"]{
 
 #btnCalendario,
 #btnLoop,
-#btnAlarme {
+#btnAlarme,
+#btnCriarTarefa, 
+#btnCancelarCriacaoTarefa{
     margin-right: 12px;
     display: flex;
     align-items: center;
@@ -148,9 +175,28 @@ input[type="file"]{
     transition: all 0.4s;
 }
 
+.flatpickr-calendar animate arrowTop arrowLeft open{
+    top: 0;
+    right: 0;
+}
+
+#btnCancelarAtualizacaoTarefa,
+#btnAtualizaTarefa{
+    display: none;
+    margin-right: 12px;
+    align-items: center;
+    padding-bottom: 0px;
+    transition: all 0.4s;
+}
+
+
 #btnCalendario:hover,
 #btnLoop:hover,
-#btnAlarme:hover {
+#btnAlarme:hover,
+#btnCriarTarefa:hover, 
+#btnCancelarCriacaoTarefa:hover,
+#btnAtualizaTarefa:hover,
+#btnCancelarAtualizacaoTarefa:hover {
     transform: scale(1.2);
 }
 
@@ -209,12 +255,12 @@ input[type="file"]{
     margin-bottom: 16px;
 }
 
-.dadosUsuario {
+#dadosUsuario {
     padding-left: 12px;
     display: inline-block;
 }
 
-#tarefaGerada {
+.tarefaGerada {
     margin-bottom: 10px;
     margin-top: 20px;
 }
@@ -225,7 +271,7 @@ input[type="file"]{
     transition: all 0.4s;
 }
 
-#adicionarTarefa > span{
+#adicionarTarefa>span {
     padding-right: 20px;
 }
 
@@ -305,19 +351,23 @@ input[type="file"]{
 }
 
 #inputNovaTarefa:focus,
-#inputNovaEtapa:focus {
+#inputNovaEtapa:focus,
+#inputNovoGrupo:focus,
+#descricaoTarefa:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
 }
 
 #descricaoTarefa {
     height: 100%;
-    width: 88%;
+    width: 100%;
     margin: 0;
     color: #fff;
     display: flex;
     flex-direction: row;
     align-items: center;
+    background: transparent;
+    border: 0;
 }
 
 #btnLembrete>span {
@@ -438,7 +488,7 @@ button>span {
         min-height: 35px;
     }
 
-    .dadosUsuario {
+    #dadosUsuario {
         display: none;
     }
 
@@ -451,7 +501,7 @@ button>span {
     }
 
     #divAdicionarTarefa,
-    #tarefaGerada {
+    .tarefaGerada {
         width: 665px;
     }
 }
@@ -459,7 +509,7 @@ button>span {
 @media (width > 1400px) {
 
     #divAdicionarTarefa,
-    #tarefaGerada {
+    .tarefaGerada {
         width: 1520px;
     }
 
@@ -474,7 +524,7 @@ button>span {
 
     }
 
-    #adicionarTarefa{
+    #adicionarTarefa {
         width: 213px;
     }
 }
